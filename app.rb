@@ -1,33 +1,40 @@
 require('sinatra')
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
-require('./lib/vehicle')
-require('./lib/dealership')
+require('./lib/contact')
+require('./lib/address')
 
 get('/') do
   erb(:index)
 end
 
-get('/dealerships/new') do
-   erb(:dealerships_form)
+get('/contact_form') do
+   erb(:contact_form)
 end
 
-get('/dealerships') do
-  @dealerships = Dealership.all()
-  erb(:dealerships)
+get('/view_contacts') do
+  @contacts = Contacts.all()
+  erb(:view_contacts)
 end
 
-post('/dealerships') do
-  name = params.fetch('name')
-  Dealership.new(name).save()
-  @dealerships = Dealership.all()
-  erb(:success)
+post('/view_contacts') do
+  first = params.fetch('first')
+  last = params.fetch('last')
+  job = params.fetch('job')
+  company = params.fetch('company')
+  Contacts.new({:first=>first,:last=>last,:job=>job,:company=>company}).save()
+  @contacts = Contacts.all()
+  erb(:view_contacts)
 end
 
-get('/vehicles/:id') do
-  @vehicle = Vehicle.find(params.fetch('id').to_i())
-  erb(:vehicle)
+get('/view_contacts/:id') do
+  @contacts = Contacts.find(params.fetch('id').to_i())
+  erb(:contact_page)
 end
+
+
+
+
 
 get('/dealerships/:id') do
   @dealership = Dealership.find(params.fetch('id').to_i())
