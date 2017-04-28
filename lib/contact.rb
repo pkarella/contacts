@@ -1,13 +1,4 @@
-class Address
 
-  attr_reader(:city,:state)
-  define_method(:initialize)do|attribute|
-    @city= attribute.fetch(:city)
-    @state= attribute.fetch(:state)
-
-  end
-
-end
 
 
 class Contacts
@@ -24,6 +15,7 @@ class Contacts
 end
 
 
+
   define_singleton_method(:all) do
     @@contact_array
   end
@@ -32,9 +24,6 @@ define_method(:id)do
     @id
    end
 
-   define_method(:address_save)do |address|
-     @address.push(address)
-   end
 
   define_method(:save) do
     @@contact_array.push(self)

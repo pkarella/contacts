@@ -28,7 +28,14 @@ post('/view_contact') do
 end
 
 
+
 get('/view_contact/:id') do
   @contacts = Contacts.find(params.fetch('id').to_i())
   erb(:contact_page)
+end
+
+
+post('/contact_page') do
+  
+
 end
