@@ -1,7 +1,0 @@
-<h1>Contacts</h1>
-<ul>
-  <% @contacts.each() do |contacts| %>
-    <li><a href="/view_contacts/<%= contacts.id() %>"><%= contacts.first()+ " "+ contacts.last() %></a></li>
-  <% end %>
-</ul>
-<a href="/">Return to Main Page</a>

@@ -1,3 +1,15 @@
+class Address
+
+  attr_reader(:city,:state)
+  define_method(:initialize)do|attribute|
+    @city= attribute.fetch(:city)
+    @state= attribute.fetch(:state)
+
+  end
+
+end
+
+
 class Contacts
   @@contact_array = []
   attr_reader(:first,:last,:job,:company)
@@ -7,7 +19,7 @@ class Contacts
     @job = attribute.fetch(:job)
     @company = attribute.fetch(:company)
     @id = @@contact_array.length().+(1)
-
+    @address=[]
 
 end
 
@@ -17,7 +29,11 @@ end
   end
 
 define_method(:id)do
-  @id
+    @id
+   end
+
+   define_method(:address_save)do |address|
+     @address.push(address)
    end
 
   define_method(:save) do
@@ -29,7 +45,7 @@ define_method(:id)do
   end
 
   define_singleton_method(:find) do |id|
-    found_dealership = nil
+    found_contact = nil
     @@contact_array.each() do |contact|
       if contact.id().eql?(id)
         found_contact = contact
